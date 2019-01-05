@@ -9,9 +9,21 @@ Thành viên
 ## Hướng dẫn chạy đồ án
 * Cài .Net Core từ trang https://dotnet.microsoft.com/download
 * Cài npm https://nodejs.org/en/
-* Cài CSDL PostgrestSql tại trang https://www.postgresql.org/
+* Cài CSDL PostgrestSql tại trang https://www.postgresql.org/ và start nó
 * Vào file Properties rồi đến file json là launchSettings.json và cài đặt port là 5001 trên local host
 * dotnet run để chạy dự án
+* Đường dẫn hệ admin: localhost:5001/admin
+* Đường dẫn phân hệ guest and user: localhost:5001/products
+## Hướng dẫn chạy đồ án khi chuyển thành csdl sql server
+* Cài sql server
+* vào file appsettings.json trong dự án và đổi đoạn sau của "DefaultConnection" thành "Server=(localdb)\\MSSQLLocalDB;Database=SportStore;Trusted_Connection=True;MultipleActiveResultSets=true"
+* Vào file start up trong dự án và đổi đoạn code "services.AddDbContext<EcommerceContext>(options =>
+          options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));"
+ thành  services.AddDbContext<EcommerceContext>(options =>
+          options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+ * Lưu và chạy lệnh dotnet build 
+ * Chạy lệnh dotnet ef database update
+ * sau đó chạy dotnet run để khởi chạy dự án trên local host ở port 5001
 
 ## Các chức năng chính
 ### 1 Phân hệ khách
