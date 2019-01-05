@@ -17,7 +17,7 @@ Thành viên
 ## Hướng dẫn chạy đồ án khi chuyển thành csdl sql server
 * Cài sql server
 * vào file appsettings.json trong dự án và đổi đoạn sau của "DefaultConnection" thành "Server=(localdb)\\MSSQLLocalDB;Database=SportStore;Trusted_Connection=True;MultipleActiveResultSets=true"
-* Vào file start up trong dự án và đổi đoạn code "services.AddDbContext<EcommerceContext>(options =>
+* Vào file startup.cs trong dự án và đổi đoạn code "services.AddDbContext<EcommerceContext>(options =>
           options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));"
  thành  services.AddDbContext<EcommerceContext>(options =>
           options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
